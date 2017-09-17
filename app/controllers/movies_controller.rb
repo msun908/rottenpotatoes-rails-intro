@@ -11,10 +11,13 @@ class MoviesController < ApplicationController
   end
 
   def index
-    if params[:sort]
-      render html: "<strong>Testing</strong>".html_safe
+
+    sort = params[:sort] || session[:sort]
+    if sort
+      @movies = Movie.order(sort).all
+    else
+      @movies = Movie.all
     end
-    @movies = Movie.all
   end
 
   def new
