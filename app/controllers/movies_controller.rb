@@ -27,6 +27,7 @@ class MoviesController < ApplicationController
         @movies = Movie.where({ rating: ratings})
       else
         @movies = Movie.all
+      end
     end
   end
 
