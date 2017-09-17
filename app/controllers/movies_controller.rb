@@ -13,17 +13,19 @@ class MoviesController < ApplicationController
   def index
     @all_ratings = Movie.get_all_ratings
     
-    sort = params[:sort] || session[:sort]
-    ratings = params[:ratings]
-    if sort
-      if sort == "title"
+    @sort = params[:sort] || session[:sort]
+    ratings_dict = params[:ratings]
+    if ratings_dict
+      @ratings = ratings_dict.keys
+    if @sort
+      if @sort == "title"
         @title_header = "hilite"
-      elsif sort == "release_date"
+      elsif @sort == "release_date"
         @release_date_header = "hilite"
       end
-      @movies = Movie.order(sort).all
+      @movies = Movie.order(@sort).all
     else
-      if ratings
+      if @ratings
         @movies = Movie.where({ rating: ratings.keys})
       else
         @movies = Movie.all
