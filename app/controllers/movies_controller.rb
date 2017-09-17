@@ -11,6 +11,9 @@ class MoviesController < ApplicationController
   end
 
   def index
+    if params[:sort]
+      render html: "<strong>Testing</strong>".html_safe
+    end
     @movies = Movie.all
   end
 
