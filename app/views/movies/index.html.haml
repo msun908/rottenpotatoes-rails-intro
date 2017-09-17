@@ -4,8 +4,8 @@
 %table#movies
   %thead
     %tr
-      %th= link_to "Movie Title", movies_path, id: "title_header", :sort => "name"
-      %th= link_to "Rating", movies_path, id: "release_date_header", :sort => "rating"
+      %th= link_to "Movie Title", movies_path(sort: "name"), id: "title_header", :sort => "name"
+      %th= link_to "Rating", movies_path(sort: "rating"), id: "release_date_header", :sort => "rating"
       %th Release Date
       %th More Info
   %tbody
