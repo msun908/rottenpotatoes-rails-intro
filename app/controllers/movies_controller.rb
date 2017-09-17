@@ -17,6 +17,7 @@ class MoviesController < ApplicationController
     ratings_dict = params[:ratings]
     if ratings_dict
       @ratings = ratings_dict.keys
+    end
     if @sort
       if @sort == "title"
         @title_header = "hilite"
