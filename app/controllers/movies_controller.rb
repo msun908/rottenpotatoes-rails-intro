@@ -15,9 +15,9 @@ class MoviesController < ApplicationController
     sort = params[:sort] || session[:sort]
     if sort
       if sort == "title"
-        @title_header = 'hilite'
+        @title_header = "hilite"
       elsif sort == "release_date"
-        @release_date_header = 'hilite'
+        @release_date_header = "hilite"
       end
       @movies = Movie.order(sort).all
     else
