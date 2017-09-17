@@ -16,7 +16,7 @@ class MoviesController < ApplicationController
     if sort
       if sort == "title"
         @title_header = 'hilite'
-      elsif sort == "rating"
+      elsif sort == "release_date"
         @release_date_header = 'hilite'
       end
       @movies = Movie.order(sort).all
