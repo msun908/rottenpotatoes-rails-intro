@@ -1,5 +1,6 @@
 class Movie < ActiveRecord::Base
     attr_accessible :rating
+    
     def self.all_ratings
       	result = {}
       	self.select(:rating).uniq.each do |movie|
