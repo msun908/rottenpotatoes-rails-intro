@@ -24,7 +24,7 @@ class MoviesController < ApplicationController
       @movies = Movie.order(sort).all
     else
       if ratings
-        @movies = Movie.where({ rating: ratings})
+        @movies = Movie.where({ rating: ratings.keys})
       else
         @movies = Movie.all
       end
