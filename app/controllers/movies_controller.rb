@@ -12,17 +12,16 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = Movie.get_all_ratings
-    
     if !params.has_key?(:sort) && !params.has_key?(:ratings)
       if(session.has_key?(:sort) || session.has_key?(:ratings))
         redirect_to movies_path(:sort=>session[:sort], :ratings=>session[:ratings])
       end
       if !session.has_key?(:ratings)
-        @ratings = Hash[@all_ratings.map {|x| [x, 1]}]
+        @ratings = {}
+        @all_ratings.each do |rating| @ratings[rating] = 1 end
         session[:ratings] = @ratings
       end
     end
-    
     if params.has_key?(:sort)
       @sort = params[:sort]
       session[:sort] = @sort
