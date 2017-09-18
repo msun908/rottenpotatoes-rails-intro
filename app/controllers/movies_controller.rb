@@ -13,18 +13,27 @@ class MoviesController < ApplicationController
   def index
     @all_ratings = Movie.get_all_ratings
     
-    @sort = params[:sort] || session[:sort]
-    
-    if params[:ratings]
-      @ratings = params[:ratings]
-    else
-      @ratings = {}
-      for elem in @all_ratings
-        @ratings[elem] = 1
-      end
+    if !params.has_key?(:sort) && !param.has_key(:ratings)
+      if !session.has_key(:ratings)
+        @ratings = {}
+        for elem in @all_ratings
+          @ratings[elem] = 1
+        end
+        session[:ratings] = @ratings
     end
     
-    if @sort
+    if (params.has_key?(:sort))
+      @sort = params[:sort]
+      session[:sort] = @sort
+    end
+    
+    if (params.has_key?(:ratings))
+      @ratings = params[:ratings]
+      session[:ratings] = @ratings
+    end
+    
+    if session.has_key[:sort]
+      @sort = session[:sort]
       if @sort == "title"
         @title_header = "hilite"
       elsif @sort == "release_date"
