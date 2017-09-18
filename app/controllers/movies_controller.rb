@@ -12,28 +12,21 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = Movie.get_all_ratings
-    
     if !params.has_key?(:sort) && !params.has_key?(:ratings)
-      
       if(session.has_key?(:sort) || session.has_key?(:ratings))
         redirect_to movies_path(:sort=>session[:sort], :ratings=>session[:ratings])
       end
       if !session.has_key?(:ratings)
-        @ratings = {}
-        for elem in @all_ratings
-          @ratings[elem] = 1
-        end
+        @ratings = @all_ratings
         session[:ratings] = @ratings
       end
     end
-    
     if params.has_key?(:sort)
       @sort = params[:sort]
       session[:sort] = @sort
     end
-    
     if params.has_key?(:ratings)
-      @ratings = params[:ratings]
+      @ratings = params[:ratings].keys
       session[:ratings] = @ratings
     end
     
@@ -45,9 +38,9 @@ class MoviesController < ApplicationController
       elsif @sort == "release_date"
         @release_date_header = "hilite"
       end
-      @movies = Movie.order(@sort).where({rating: @ratings.keys})
+      @movies = Movie.order(@sort).where({rating: @ratings})
     else
-      @movies = Movie.where({rating: @ratings.keys})
+      @movies = Movie.where({rating: @ratings})
     end
   end
 
