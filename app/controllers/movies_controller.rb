@@ -14,6 +14,10 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.get_all_ratings
     
     if !params.has_key?(:sort) && !params.has_key?(:ratings)
+      
+      if(session.has_key?(:sort) || session.has_key?(:ratings))
+        redirect_to movies_path(:sort=>session[:sort], :ratings=>session[:ratings])
+      end
       if !session.has_key?(:ratings)
         @ratings = {}
         for elem in @all_ratings
