@@ -33,6 +33,7 @@ class MoviesController < ApplicationController
       session[:ratings] = @ratings
     end
     
+    @ratings = session[:ratings]
     if session.has_key?(:sort)
       @sort = session[:sort]
       if @sort == "title"
