@@ -14,7 +14,7 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.get_all_ratings
     
     sort = params[:sort] || session[:sort]
-    @ratings = params[:ratings]
+    @ratings = params[:ratings] || []
     if sort
       if sort == "title"
         @title_header = "hilite"
