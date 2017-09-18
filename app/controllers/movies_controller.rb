@@ -13,8 +13,8 @@ class MoviesController < ApplicationController
   def index
     @all_ratings = Movie.get_all_ratings
     
-    if !params.has_key?(:sort) && !params.has_key(:ratings)
-      if !session.has_key(:ratings)
+    if !params.has_key?(:sort) && !params.has_key?(:ratings)
+      if !session.has_key?(:ratings)
         @ratings = {}
         for elem in @all_ratings
           @ratings[elem] = 1
@@ -33,7 +33,7 @@ class MoviesController < ApplicationController
       session[:ratings] = @ratings
     end
     
-    if session.has_key[:sort]
+    if session.has_key?(:sort)
       @sort = session[:sort]
       if @sort == "title"
         @title_header = "hilite"
