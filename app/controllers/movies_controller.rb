@@ -18,10 +18,7 @@ class MoviesController < ApplicationController
         redirect_to movies_path(:sort=>session[:sort], :ratings=>session[:ratings])
       end
       if !session.has_key?(:ratings)
-        @ratings = {}
-        for elem in @all_ratings
-          @ratings[elem] = 1
-        end
+        @ratings = @all_ratings.map { |x| [x, 1] }.to_h
         session[:ratings] = @ratings
       end
     end
