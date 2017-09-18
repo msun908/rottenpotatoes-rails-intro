@@ -20,14 +20,15 @@ class MoviesController < ApplicationController
           @ratings[elem] = 1
         end
         session[:ratings] = @ratings
+      end
     end
     
-    if (params.has_key?(:sort))
+    if params.has_key?(:sort)
       @sort = params[:sort]
       session[:sort] = @sort
     end
     
-    if (params.has_key?(:ratings))
+    if params.has_key?(:ratings)
       @ratings = params[:ratings]
       session[:ratings] = @ratings
     end
