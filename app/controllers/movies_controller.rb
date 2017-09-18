@@ -20,7 +20,7 @@ class MoviesController < ApplicationController
     else
       @ratings = {}
       for elem in @all_ratings
-        @ratings << {elem: 1}
+        @ratings[elem] = 1
       end
     end
     
